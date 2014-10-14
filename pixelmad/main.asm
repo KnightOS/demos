@@ -46,7 +46,7 @@ appBackupScreen:
 ; Start demo!
 ; ==================================================================================================
 
-#include "workaround.asm"
+#include "pixelmad/workaround.asm"
 
 Init_All:
     ld a, textSwapDelay
@@ -229,25 +229,25 @@ Text_To_Display:
 
 
 ; TUNNEL EFFECT
-#include "tunnel.asm"
+#include "pixelmad/tunnel.asm"
 
 
 ; WATER EFFECT
-#include "water.asm"
+#include "pixelmad/water.asm"
 
 
 
 ; 3D GLOBE EFFECT
-#include "globe.asm"
-; #include "linedraw.asm"
+#include "pixelmad/globe.asm"
+; #include "pixelmad/linedraw.asm"
 
 
 ; FLAG EFFECT
-#include "flag.asm"
+#include "pixelmad/flag.asm"
 
 
 ; CHECKERBOARD FIELD EFFECT
-#include "field.asm"
+#include "pixelmad/field.asm"
 
 
 
@@ -267,9 +267,9 @@ text_Low_RAM:
 ; Global include files
 ; ==================================================================================================
 
-#include "ripple.asm"
-#include "shifts.asm"
-#include "general.asm"
+#include "pixelmad/ripple.asm"
+#include "pixelmad/shifts.asm"
+#include "pixelmad/general.asm"
 
 ; ==================================================================================================
 ; Intro screen stuff
@@ -548,7 +548,7 @@ getSin:
     ret
 
 
-#include "letters.asm"
+#include "pixelmad/letters.asm"
 
 Plasma_LUT:
 .db 20
@@ -808,9 +808,9 @@ Plasma_LUT:
 .db 22
 .db 24
 
-#include "trig.asm"
-#include "tnllut.asm"
-#include "images.asm"
+#include "pixelmad/trig.asm"
+#include "pixelmad/tnllut.asm"
+#include "pixelmad/images.asm"
 
 corelibPath:
     .db "/lib/core", 0

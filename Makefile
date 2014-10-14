@@ -1,43 +1,23 @@
-OUTDIR:=bin/
-BINDIR:=$(OUTDIR)bin/
-APPDIR:=$(OUTDIR)var/applications/
+include .knightos/variables.make
 
-DEPENDENCIES=../corelib/;../fx3dlib/
+INIT=/bin/fileman
 
-all: package
+ALL_TARGETS:=$(BIN)count $(BIN)hello $(BIN)gfxdemo $(BIN)pixelmad
 
-package: $(BINDIR)count $(BINDIR)hello $(BINDIR)gfxdemo $(BINDIR)pixelMadness
-	kpack demos-1.0.0.pkg $(OUTDIR)
+$(BIN)count: count/*.asm
+	mkdir -p $(BIN)
+	$(AS) $(ASFLAGS) --listing $(OUT)count.list count/main.asm $(BIN)count
 
-$(BINDIR)count: count.asm
-	mkdir -p $(BINDIR)
-	mkdir -p $(APPDIR)
-	$(AS) $(ASFLAGS) --define "$(PLATFORM)" --include "$(INCLUDE);$(PACKAGEPATH)/demos/;$(DEPENDENCIES)" count.asm $(BINDIR)count
-	cp count.app $(APPDIR)
+$(BIN)hello: hello/*.asm
+	mkdir -p $(BIN)
+	$(AS) $(ASFLAGS) --listing $(OUT)hello.list hello/main.asm $(BIN)hello
 
-$(BINDIR)hello: hello.asm
-	mkdir -p $(BINDIR)
-	mkdir -p $(APPDIR)
-	$(AS) $(ASFLAGS) --define "$(PLATFORM)" --include "$(INCLUDE);$(PACKAGEPATH)/demos/;$(DEPENDENCIES)" hello.asm $(BINDIR)hello
-	cp hello.app $(APPDIR)
+$(BIN)gfxdemo: gfxdemo/*.asm
+	mkdir -p $(BIN)
+	$(AS) $(ASFLAGS) --listing $(OUT)gfxdemo.list gfxdemo/main.asm $(BIN)gfxdemo
 
-$(BINDIR)gfxdemo: gfxdemo.asm
-	mkdir -p $(BINDIR)
-	mkdir -p $(APPDIR)
-	$(AS) $(ASFLAGS) --define "$(PLATFORM)" --include "$(INCLUDE);$(PACKAGEPATH)/demos/;$(DEPENDENCIES)" gfxdemo.asm $(BINDIR)gfxdemo
-	cp gfxdemo.app $(APPDIR)
+$(BIN)pixelmad: pixelmad/*.asm
+	mkdir -p $(BIN)
+	$(AS) $(ASFLAGS) --listing $(OUT)pixelmad.list pixelmad/main.asm $(BIN)pixelmad
 
-$(BINDIR)pixelMadness: pixelMadness/*.asm
-	mkdir -p $(BINDIR)
-	mkdir -p $(APPDIR)
-	$(AS) $(ASFLAGS) --define "$(PLATFORM)" --include "$(INCLUDE);$(PACKAGEPATH)/demos/;$(DEPENDENCIES);pixelMadness/" pixelMadness/pixelmad.asm $(BINDIR)pixelmad
-	cp pixelmad.app $(APPDIR)
-
-clean:
-	rm -rf $(OUTDIR)
-	rm -rf demos-1.0.0.pkg
-
-install: package
-	kpack -e -s demos-1.0.0.pkg $(PREFIX)
-
-.PHONY: all clean
+include .knightos/sdk.make
