@@ -1,3 +1,3 @@
 name=Hello World
-icon=/share/icons/hello.kio
+icon=/share/icons/demos.img
 exec=/bin/hello

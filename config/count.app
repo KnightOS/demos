@@ -1,3 +1,3 @@
 name=Counting Demo
-icon=/share/icons/count.kio
+icon=/share/icons/demos.img
 exec=/bin/count

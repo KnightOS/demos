@@ -1,3 +1,3 @@
 name=Graphical Demo
-icon=/share/icons/gfxdemo.kio
+icon=/share/icons/demos.img
 exec=/bin/gfxdemo
